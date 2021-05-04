@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inspect-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: inspect-server
+  template:
+    metadata:
+      labels:
+        app: inspect-server
+    spec:
+      containers:
+        - name: inspect-server
+          image: tcp-server:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 9999
+          volumeMounts: 
+            - name: logfile
+              mountPath: /code/log
+            - name: timezone
+              mountPath: /etc/localtime
+      volumes:
+        - name: logfile
+          persistentVolumeClaim:
+            claimName: inspect-pvc
+        - name: timezone
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Shanghai
+

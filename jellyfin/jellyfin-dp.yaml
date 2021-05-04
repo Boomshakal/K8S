@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jellyfin
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+    spec:
+      containers:
+      - name: jellyfin
+        image: jellyfin/jellyfin:latest
+        ports:
+        - containerPort: 8096
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: data
+          mountPath: /media
+      volumes:
+      - name: config
+        hostPath:
+          path: /data/jellyfin/config
+          type: Directory
+      - name: data
+        hostPath:
+          path: /data/jellyfin/media
+          type: Directory

@@ -1,0 +1,15 @@
+# traefik-dashboard-route.yaml
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard-route
+spec:
+  entryPoints:
+    - web
+  routes:
+  # 这里设置你的域名
+    - match: Host(`traefik.li.com`)
+      kind: Rule
+      services:
+        - name: traefik
+          port: 8080

@@ -1,0 +1,45 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv1
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: /data/mysql/pv1
+    server: localhost
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv2
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: /data/mysql/pv2
+    server: localhost
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv3
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: /data/mysql/pv3
+    server: localhost

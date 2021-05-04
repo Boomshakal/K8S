@@ -1,0 +1,6 @@
+persistence:
+  data:
+    hostPath:
+      enabled: true
+      type: Directory
+      path: /data/jellyfin/media

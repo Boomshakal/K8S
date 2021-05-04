@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pms
+  template:
+    metadata:
+      labels:
+        app: pms
+    spec:
+      containers:
+      - name: pms
+        image: plexinc/pms-docker:latest
+        ports:
+        - containerPort: 32400
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: transcode
+          mountPath: /transcode
+        - name: data
+          mountPath: /data
+        env:
+        - name: TZ
+          value: 'Asia/Shanghai'
+        - name: PLEX_CLAIM
+          value: 'claim-sQkq65T5BqoT3mSFWBa9'
+      volumes:
+      - name: config
+        hostPath:
+          path: /data/pms/config
+          type: Directory
+      - name: transcode
+        hostPath:
+          path: /data/pms/transcode
+          type: Directory
+      - name: data
+        hostPath:
+          path: /data/pms/data
+          type: Directory
