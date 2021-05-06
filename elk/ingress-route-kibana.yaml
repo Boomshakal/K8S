@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kibana-dashboard-route
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  # 这里设置你的域名
+    - match: Host(`kibana.li.com`)
+      kind: Rule
+      services:
+        - name: quickstart-kb-http
+          port: 5601
+  tls:
+    secretName: https
