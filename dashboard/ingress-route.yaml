@@ -10,7 +10,7 @@ spec:
     - websecure
   routes:
   # 这里设置你的域名
-    - match: Host(`dashboard.li.com`)
+    - match: Host(`dashboard.k3s.com`)
       kind: Rule
       services:
         - name: kubernetes-dashboard

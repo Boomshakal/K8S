@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: jellyfin-helm-dashboard-route
+  name: wordpress-dashboard-route
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
@@ -9,10 +9,10 @@ spec:
     - websecure
   routes:
   # 这里设置你的域名
-    - match: Host(`jellyfin.k3s.com`)
+    - match: Host(`wordpress.k3s.com`)
       kind: Rule
       services:
-        - name: jellyfin
-          port: 80
+        - name: wordpress
+          port: 443
   tls:
     secretName: https

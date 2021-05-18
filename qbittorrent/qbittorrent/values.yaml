@@ -1,0 +1,91 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: ghcr.io/k8s-at-home/qbittorrent
+  pullPolicy: IfNotPresent
+  tag: v4.3.4.1
+
+strategy:
+  type: Recreate
+
+env: {}
+  # TZ: UTC
+
+service:
+  port:
+    port: 8080
+  additionalServices:
+  - enabled: true
+    nameSuffix: bittorrent
+    type: ClusterIP
+    port:
+      port: 6881
+      name: bittorrent
+      protocol: TCP
+      targetPort: 6881
+
+ingress:
+  enabled: false
+
+persistence:
+  config:
+    enabled: true
+    emptyDir:
+      enabled: false
+    mountPath: /config
+    storageClassName: local-path
+    accessMode: ReadWriteOnce
+    size: 5Gi
+
+  media:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /media
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
+
+  downloads:
+    enabled: true
+    emptyDir:
+      enabled: false
+    mountPath: /downloads
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    storageClassName: local-path
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
+
+additionalVolumes:
+  - name: qbittorrent-scripts
+    emptyDir: {}
+    ## When you want to enable automatic port configuration at startup, adjust this to:
+    # configMap:
+    #   name: <RELEASENAME>-scripts
+    #   defaultMode: 511
+
+additionalVolumeMounts:
+  - mountPath: /config/custom-cont-init.d
+    name: qbittorrent-scripts

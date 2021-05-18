@@ -1,0 +1,17 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: wordpress
+spec:
+  chart: wordpress 
+  repo: https://charts.bitnami.com/bitnami
+  valuesContent: |-
+      wordpressUsername: admin
+      wordpressPassword: password
+      persistence:
+        storageClass: local-path
+      mariadb:
+        enabled: true
+        primary:
+          persistence:
+            storageClass: local-path

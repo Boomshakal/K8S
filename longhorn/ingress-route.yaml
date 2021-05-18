@@ -1,7 +1,8 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: jellyfin-helm-dashboard-route
+  name: longhorn-dashboard-route
+  namespace: longhorn-system
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
@@ -9,10 +10,10 @@ spec:
     - websecure
   routes:
   # 这里设置你的域名
-    - match: Host(`jellyfin.k3s.com`)
+    - match: Host(`longhorn.k3s.com`)
       kind: Rule
       services:
-        - name: jellyfin
+        - name: longhorn-frontend
           port: 80
   tls:
     secretName: https

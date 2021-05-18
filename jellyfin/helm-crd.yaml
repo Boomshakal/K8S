@@ -1,0 +1,12 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: jellyfin
+spec:
+  chart: jellyfin 
+  repo: https://utkuozdemir.org/helm-charts
+  valuesContent: |-
+    persistence:
+      data:
+        enabled: true
+        storageClass: local-path

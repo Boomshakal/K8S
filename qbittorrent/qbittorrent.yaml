@@ -1,0 +1,7 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: qbittorrent
+spec:
+  chart: qbittorrent
+  repo: https://k8s-at-home.com/charts/
