@@ -11,6 +11,6 @@ spec:
     - ReadWriteMany 
   persistentVolumeReclaimPolicy: Recycle
   nfs:
-    path: "/data/wordpress"
-    server: localhost
+    path: "/volume1/nfs/wordpress"
+    server: 192.168.150.143
     readOnly: false

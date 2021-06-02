@@ -8,3 +8,7 @@ spec:
   resources:
     requests:
       storage: 10Gi
+  storageClassName: ""
+  selector:
+    matchLabels:
+      type: pv-wordpress
