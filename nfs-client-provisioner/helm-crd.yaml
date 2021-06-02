@@ -1,0 +1,11 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: nfs-client-provisioner
+spec:
+  chart: nfs-client-provisioner
+  repo: https://ckotzbauer.github.io/helm-charts
+  valuesContent: |-
+    nfs:
+      server: 192.168.150.143
+      path: /volume1/nfs

@@ -1,0 +1,75 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations: {}
+  labels:
+    k8s.kuboard.cn/name: livego
+  name: livego
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s.kuboard.cn/name: livego
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        k8s.kuboard.cn/name: livego
+    spec:
+      containers:
+        - image: gwuhaolin/livego
+          imagePullPolicy: Always
+          name: livego
+          ports:
+            - containerPort: 1935
+              name: rtmp-play
+              protocol: TCP
+            - containerPort: 7001
+              name: flv-play
+              protocol: TCP
+            - containerPort: 7002
+              name: hls-play
+              protocol: TCP
+            - containerPort: 8090
+              name: api
+              protocol: TCP
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations: {}
+  labels:
+    k8s.kuboard.cn/name: livego
+  name: livego
+spec:
+  ports:
+    - name: api
+      nodePort: 30001
+      port: 8090
+      protocol: TCP
+      targetPort: 8090
+    - name: live
+      nodePort: 30016
+      port: 1935
+      protocol: TCP
+      targetPort: 1935
+    - name: flv
+      nodePort: 30017
+      port: 7001
+      protocol: TCP
+      targetPort: 7001
+    - name: hraziw
+      nodePort: 30018
+      port: 7002
+      protocol: TCP
+      targetPort: 7002
+  selector:
+    k8s.kuboard.cn/name: livego
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  type: NodePort

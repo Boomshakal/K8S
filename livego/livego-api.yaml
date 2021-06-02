@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: livego-api-route
+spec:
+  entryPoints:
+    - web
+  routes:
+  # 这里设置你的域名
+    - match: Host(livego.api.k3s.com`)
+      kind: Rule
+      services:
+        - name: livego
+          port: 8090
