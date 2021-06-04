@@ -5,3 +5,15 @@ metadata:
 spec:
   chart: qbittorrent
   repo: https://k8s-at-home.com/charts/
+  valuesContent: |-
+    persistence:
+      config:
+        enabled: true
+        storageClass: nfs-client
+        accessMode: ReadWriteOnce
+        size: 500Mi
+      downloads:
+        enabled: true
+        storageClass: nfs-client
+        accessMode: ReadWriteOnce
+        size: 64Gi

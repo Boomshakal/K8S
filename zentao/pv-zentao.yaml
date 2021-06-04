@@ -1,16 +1,17 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-test
+  name: pv-zentao
   labels:
-    type: pv-test
+    type: nfs
 spec:
+  storageClassName: storageclass-zentao
   capacity:
-    storage: 1Gi 
+    storage: 10Gi 
   accessModes:
     - ReadWriteMany 
   persistentVolumeReclaimPolicy: Recycle
   nfs:
-    path: "/volume1/nfs/mysql"
-    server: 192.168.150.143
+    path: "/data/zentao"
+    server: localhost
     readOnly: false

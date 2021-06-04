@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jumpserver
+  labels:
+    app.kubernetes.io/instance: jumpserver
+    app.kubernetes.io/name: jumpserver
+spec:
+    replicas: 1
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    selector:
+      matchLabels:
+        app.kubernetes.io/instance: jumpserver
+        app.kubernetes.io/name: jumpserver
+    template:
+      metadata:
+        labels:
+          app.kubernetes.io/instance: jumpserver
+          app.kubernetes.io/name: jumpserver
+      spec:
+        containers:
+        - env:
+          - name: SECRET_KEY
+            value: "veDMhBkZHdfjlsafdjaslfbfiewfbiabjfdakwiafndiawbfjwZ"
+          - name: BOOTSTRAP_TOKEN
+            value: "F9HUa5nfksd532ndsaR"
+          - name: DB_ENGINE
+            value: "mysql"
+          - name: DB_HOST
+            value: "172.16.1.54"
+          - name: DB_PORT
+            value: "3306"
+          - name: DB_USER
+            value: "jumpserver"
+          - name: "DB_PASSWORD"
+            value: "fdsajonfwfa"
+          - name: DB_NAME
+            value: "jumpserver"
+          - name: REDIS_HOST
+            value: "172.16.1.54"
+          - name: REDIS_PORT
+            value: "6379"
+          - name: REDIS_PASSWORD
+            value: "fdsa923nkfs32"
+          image: jumpserver/jms_all:1.5.9
+          imagePullPolicy: IfNotPresent
+          name: jumpserver
+          ports:
+          - containerPort: 80
+            name: http
+            protocol: TCP
+          - containerPort: 2222
+            name: ssh
+            protocol: TCP
+          volumeMounts:
+          - mountPath: /opt/jumpserver/data/media
+            name: datadir
+        volumes:
+        - name: datadir
+          persistentVolumeClaim:
+            claimName: jumpserver-datadir

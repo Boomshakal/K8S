@@ -1,0 +1,13 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: magento
+spec:
+  chart: magento
+  repo: https://charts.bitnami.com/bitnami
+  valuesContent: |-
+    magentoUsername: admin
+    magentoPassword: P@ssw0rd
+    mariadb:
+      auth:
+        rootPassword: P@ssw0rd

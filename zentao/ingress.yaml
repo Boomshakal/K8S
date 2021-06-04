@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: zentao-dashboard
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: zentao.ikahe.com
+    http:
+      paths:
+      - backend:
+          serviceName: zentao-client
+          servicePort: 80

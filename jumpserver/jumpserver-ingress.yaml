@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jumpserver-ingress
+  namespace: omc
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  - hosts:
+    - jmp-dev.niucache.com
+    secretName: ingress-niucache
+  rules:
+  - host: jmp-dev.niucache.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: jumpserver
+          servicePort: 80

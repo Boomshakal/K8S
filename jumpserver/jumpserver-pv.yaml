@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-test
+  name: pv-jumpserver
   labels:
-    type: pv-test
+    type: nfs
 spec:
   capacity:
-    storage: 1Gi 
+    storage: 50Gi 
   accessModes:
     - ReadWriteMany 
   persistentVolumeReclaimPolicy: Recycle
   nfs:
-    path: "/volume1/nfs/mysql"
-    server: 192.168.150.143
+    path: "/data/jumpserver"
+    server: localhost
     readOnly: false
