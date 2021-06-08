@@ -1,0 +1,7 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: jenkins
+spec:
+  chart: jenkins
+  repo: https://charts.jenkins.io

@@ -1,0 +1,32 @@
+annotations:
+  artifacthub.io/changes: |
+    - Bump image version
+    - Add liveness probe
+    - Make liveness and readiness probes externally configurable
+    - Add icon to chart
+    - Update Chart.yaml
+  artifacthub.io/images: |
+    - name: plexinc/pms-docker
+      image: docker.io/plexinc/pms-docker:1.22.3.4523-d0ce30438
+  artifacthub.io/license: MIT
+apiVersion: v2
+appVersion: 1.22.3.4523-d0ce30438
+description: Plex Media Server Helm chart that is based on plexinc/pms-docker Docker image.
+home: https://www.plex.tv
+icon: https://utkuozdemir.org/helm-charts/plex.png
+keywords:
+- plex
+- media-server
+- plex-media-server
+- streaming
+- tv
+maintainers:
+- email: uoz@protonmail.com
+  name: Utku Özdemir
+  url: https://utkuozdemir.org
+name: plex
+sources:
+- https://github.com/plexinc/pms-docker
+- https://github.com/utkuozdemir/helm-charts
+type: application
+version: 1.0.2

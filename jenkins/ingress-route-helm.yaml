@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: plex-helm-dashboard-route
+  name: jenkins-helm-dashboard-route
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
@@ -9,10 +9,10 @@ spec:
     - websecure
   routes:
   # 这里设置你的域名
-    - match: Host(`plex.k3s.com`)
+    - match: Host(`jenkins.k3s.com`)
       kind: Rule
       services:
-        - name: plex
+        - name: jellyfin
           port: 80
   tls:
     secretName: https

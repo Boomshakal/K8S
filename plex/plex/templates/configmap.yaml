@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "plex.fullname" . }}
+  labels:
+    {{- include "plex.labels" . | nindent 4 }}
+data:
+  {{- with .Values.plex.uid }}
+  PUID: {{ . | quote }}
+  {{- end }}
+  {{- with .Values.plex.gid }}
+  PGID: {{ . | quote }}
+  {{- end }}
+  {{- with .Values.plex.timezone }}
+  TZ: {{ . }}
+  {{- end }}
+  {{- with .Values.plex.claim }}
+  PLEX_CLAIM: {{ . }}
+  {{- end }}
+  {{- with .Values.plex.changeConfigDirOwnership }}
+  CHANGE_CONFIG_DIR_OWNERSHIP: {{ . | quote }}
+  {{- end }}
+  {{- with .Values.plex.advertiseIp }}
+  ADVERTISE_IP: {{ . | quote }}
+  {{- end }}
+  {{- with .Values.plex.allowedNetworks }}
+  ALLOWED_NETWORKS: {{ join "," . }}
+  {{- end }}
+{{- range $k, $v := .Values.plex.otherEnv }}
+  {{ $k }}: {{ $v }}
+{{- end }}

@@ -1,0 +1,17 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: plex
+spec:
+  chart: plex
+  repo: https://utkuozdemir.org/helm-charts
+  valuesContent: |-
+    persistence:
+      data:
+        enabled: true
+        storageClass: nfs-client
+        accessMode: ReadWriteOnce
+        size: 64Gi
+    env:
+      TZ: 'Asia/Shanghai'
+      PLEX_CLAIM: 'claim-sQkq65T5BqoT3mSFWBa9'
