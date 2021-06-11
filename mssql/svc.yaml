@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sql-server
+spec:
+  ports:
+  - name: mongo
+    port: 1433
+    targetPort: 1433
+    protocol: TCP
+  selector:
+    app: sql-server

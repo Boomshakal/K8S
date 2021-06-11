@@ -52,6 +52,9 @@ spec:
             - name: mysql
               containerPort: 3306
               hostPort: 3306
+            - name: mssql
+              containerPort: 1433
+              hostPort: 1433
             - name: inspect
               containerPort: 9999
               hostPort: 5000

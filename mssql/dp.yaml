@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sql-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sql-server
+  template:
+    metadata:
+      labels:
+        app: sql-server
+    spec:
+      containers:
+      - name: sql-server
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        ports:
+        - containerPort: 1433
+        volumeMounts:
+        - name: sql-pvc
+          mountPath: /var/opt/mssql
+        env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: MSSQL_SA_PASSWORD
+          value: "2018@Ikahe"
+      volumes:
+      - name: sql-pvc
+        persistentVolumeClaim:
+          claimName: sql-server-data
