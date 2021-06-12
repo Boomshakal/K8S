@@ -55,6 +55,9 @@ spec:
             - name: mssql
               containerPort: 1433
               hostPort: 1433
+            - name: mongodb
+              containerPort: 27017
+              hostPort: 27017
             - name: inspect
               containerPort: 9999
               hostPort: 5000

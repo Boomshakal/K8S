@@ -24,6 +24,8 @@ data:
         address: ":3306"
       mssql:
         address: ":1433"
+      mongodb:
+        address: ":27017"
       inspect:
         address: ":9999"
     providers:
