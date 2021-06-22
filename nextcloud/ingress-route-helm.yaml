@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: jellyfin-helm-dashboard-route
+  name: nextcloud-helm-dashboard-route
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
@@ -9,8 +9,8 @@ spec:
     - web
   routes:
   # 这里设置你的域名
-    - match: Host(`jellyfin.k3s.com`)
+    - match: Host(`nextcloud.k3s.com`)
       kind: Rule
       services:
-        - name: jellyfin
-          port: 80
+        - name: nextcloud
+          port: 8080
