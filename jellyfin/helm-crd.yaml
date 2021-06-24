@@ -10,3 +10,6 @@ spec:
       data:
         enabled: true
         storageClass: nfs-client
+      config:
+        enabled: true
+        storageClass: nfs-client
