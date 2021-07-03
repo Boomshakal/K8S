@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  feature-gates: LiveMigration,DataVolumes,HostDisk
+kind: ConfigMap
+metadata:
+  labels:
+    kubevirt.io: "config"
+  name: kubevirt-config
+  namespace: kubevirt

@@ -1,0 +1,43 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  name: deepin
+spec:
+  running: false
+  template:
+    metadata:
+      labels:
+        kubevirt.io/domain: deepin
+    spec:
+      domain:
+        cpu:
+          cores: 1
+        devices:
+          disks:
+          - bootOrder: 2
+            cdrom:
+              bus: sata
+            name: cdromiso
+          - bootOrder: 1
+            disk:
+              bus: virtio
+            name: harddrive
+          interfaces:
+          - masquerade: {}
+            model: e1000 
+            name: default
+        machine:
+          type: ""
+        resources:
+          requests:
+            memory: 1G
+      networks:
+      - name: default
+        pod: {}
+      volumes:
+      - name: cdromiso
+        persistentVolumeClaim:
+          claimName: iso-deepin
+      - name: harddrive
+        persistentVolumeClaim:
+          claimName: pvc-deepin
