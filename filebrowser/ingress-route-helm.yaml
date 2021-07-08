@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: filebrowser-helm-dashboard-route
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+  # 这里设置你的域名
+    - match: Host(`filebrowser.k3s.com`)
+      kind: Rule
+      services:
+        - name: filebrowser
+          port: 80
