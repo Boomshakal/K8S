@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: okd-dashboard-route
+  namespace: kube-system
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+  # 这里设置你的域名
+    - match: Host(`okd.k3s.com`)
+      kind: Rule
+      services:
+        - name: console-np-service
+          port: 9000
