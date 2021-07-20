@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kubesphere-dashboard-route
+  namespace: kubesphere-system
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+  # 这里设置你的域名
+    - match: Host(`kubesphere.k3s.com`)
+      kind: Rule
+      services:
+        - name: ks-console
+          port: 80
