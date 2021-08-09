@@ -1,0 +1,107 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"istio-ingressgateway","install.operator.istio.io/owning-resource":"installed-state-1-6-10","install.operator.istio.io/owning-resource-namespace":"istio-system","istio":"ingressgateway","operator.istio.io/component":"IngressGateways","operator.istio.io/managed":"Reconcile","operator.istio.io/version":"1.6.10","release":"istio"},"name":"istio-ingressgateway","namespace":"istio-system"},"spec":{"ports":[{"name":"status-port","port":15021,"targetPort":15021},{"name":"http2","port":80,"targetPort":8080},{"name":"https","port":443,"targetPort":8443},{"name":"tls","port":15443,"targetPort":15443}],"selector":{"app":"istio-ingressgateway","istio":"ingressgateway"},"type":"LoadBalancer"}}
+  creationTimestamp: "2021-08-09T02:29:34Z"
+  labels:
+    app: istio-ingressgateway
+    install.operator.istio.io/owning-resource: installed-state-1-6-10
+    install.operator.istio.io/owning-resource-namespace: istio-system
+    istio: ingressgateway
+    operator.istio.io/component: IngressGateways
+    operator.istio.io/managed: Reconcile
+    operator.istio.io/version: 1.6.10
+    release: istio
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:install.operator.istio.io/owning-resource: {}
+          f:install.operator.istio.io/owning-resource-namespace: {}
+          f:istio: {}
+          f:operator.istio.io/component: {}
+          f:operator.istio.io/managed: {}
+          f:operator.istio.io/version: {}
+          f:release: {}
+      f:spec:
+        f:externalTrafficPolicy: {}
+        f:ports:
+          .: {}
+          k:{"port":80,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":443,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":15021,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":15443,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector:
+          .: {}
+          f:app: {}
+          f:istio: {}
+        f:sessionAffinity: {}
+        f:type: {}
+    manager: istioctl
+    operation: Update
+    time: "2021-08-09T02:29:34Z"
+  name: istio-ingressgateway
+  namespace: istio-system
+  resourceVersion: "4101"
+  selfLink: /api/v1/namespaces/istio-system/services/istio-ingressgateway
+  uid: 1c83fd71-1bda-4eec-9b35-5edc46f09d61
+spec:
+  clusterIP: 10.43.36.100
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: status-port
+    nodePort: 31114
+    port: 15021
+    protocol: TCP
+    targetPort: 15021
+  - name: http2
+    nodePort: 32446
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  - name: https
+    nodePort: 32416
+    port: 443
+    protocol: TCP
+    targetPort: 8443
+  - name: tls
+    nodePort: 31406
+    port: 15443
+    protocol: TCP
+    targetPort: 15443
+  selector:
+    app: istio-ingressgateway
+    istio: ingressgateway
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}

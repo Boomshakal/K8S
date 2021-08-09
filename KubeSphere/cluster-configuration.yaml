@@ -8,7 +8,7 @@ metadata:
     version: v3.1.1
 spec:
   persistence:
-    storageClass: ""        # If there is no default StorageClass in your cluster, you need to specify an existing StorageClass here.
+    storageClass: "nfs-client"        # If there is no default StorageClass in your cluster, you need to specify an existing StorageClass here.
   authentication:
     jwtSecret: ""           # Keep the jwtSecret consistent with the Host Cluster. Retrieve the jwtSecret by executing "kubectl -n kubesphere-system get cm kubesphere-config -o yaml | grep -v "apiVersion" | grep jwtSecret" on the Host Cluster.
   local_registry: ""        # Add your private registry address if it is needed.
@@ -65,14 +65,14 @@ spec:
       enabled: true
       replicas: 2
   logging:                 # (CPU: 57 m, Memory: 2.76 G) Flexible logging functions are provided for log query, collection and management in a unified console. Additional log collectors can be added, such as Elasticsearch, Kafka and Fluentd.
-    enabled: false         # Enable or disable the KubeSphere Logging System.
+    enabled: true          # Enable or disable the KubeSphere Logging System.
     logsidecar:
       enabled: true
       replicas: 2
   metrics_server:                    # (CPU: 56 m, Memory: 44.35 MiB) It enables HPA (Horizontal Pod Autoscaler).
-    enabled: false                   # Enable or disable metrics-server.
+    enabled: true                  # Enable or disable metrics-server.
   monitoring:
-    storageClass: ""                 # If there is an independent StorageClass you need for Prometheus, you can specify it here. The default StorageClass is used by default.
+    storageClass: "nfs-client"                 # If there is an independent StorageClass you need for Prometheus, you can specify it here. The default StorageClass is used by default.
     # prometheusReplicas: 1          # Prometheus replicas are responsible for monitoring different segments of data source and providing high availability.
     prometheusMemoryRequest: 400Mi   # Prometheus request memory.
     prometheusVolumeSize: 20Gi       # Prometheus PVC size.
@@ -89,9 +89,9 @@ spec:
       type: none # Specify "weave-scope" for this field to enable Service Topology. "none" means that Service Topology is disabled.
   openpitrix: # An App Store that is accessible to all platform tenants. You can use it to manage apps across their entire lifecycle.
     store:
-      enabled: false # Enable or disable the KubeSphere App Store.
+      enabled: true  # Enable or disable the KubeSphere App Store.
   servicemesh:         # (0.3 Core, 300 MiB) Provide fine-grained traffic management, observability and tracing, and visualized traffic topology.
-    enabled: false     # Base component (pilot). Enable or disable KubeSphere Service Mesh (Istio-based).
+    enabled: true     # Base component (pilot). Enable or disable KubeSphere Service Mesh (Istio-based).
   kubeedge:          # Add edge nodes to your cluster and deploy workloads on edge nodes.
     enabled: false   # Enable or disable KubeEdge.
     cloudCore:
