@@ -2,6 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
 metadata:
   name: redis
+  namespace: project
 spec:
   entryPoints:
     - redis

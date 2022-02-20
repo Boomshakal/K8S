@@ -2,11 +2,12 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
 metadata:
   name: mysql-ingress
+  namespace: project
 spec:
   entryPoints:
     - mysql
   routes:
   - match: HostSNI(`*`)
     services:
-    - name: mysql-cluster
+    - name: mysql-cluster-primary
       port: 3306
