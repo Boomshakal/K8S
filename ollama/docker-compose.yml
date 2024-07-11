@@ -1,0 +1,18 @@
+version: '2.15'
+
+services:
+  ollama:
+    container_name: ollama
+    image: ollama/ollama
+    ports:
+      - 11434:11434
+    volumes:
+      - /Users/lihuimin/ai/ollama:/root/.ollama
+
+  web-ui:
+    container_name: open-webui
+    image: ghcr.io/ollama-webui/ollama-webui:main
+    ports:
+      - 8080:8080
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

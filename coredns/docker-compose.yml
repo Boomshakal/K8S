@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  coredns:
+    image: coredns/coredns:1.11.1
+    command: -conf /etc/coredns/Corefile
+    volumes:
+      - /Users/lihuimin/coredns/Corefile:/etc/coredns/Corefile
+    ports:
+      - "53:53"
+      - "53:53/udp"
+    depends_on:
+      - etcd
+    networks:
+      - coredns
+
+  etcd:
+    image: bitnami/etcd:latest
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+    volumes:
+      - etcd_data:/bitnami/etcd/data
+    ports:
+      - "2379:2379"
+    networks:
+      - coredns
+
+networks:
+  coredns:
+
+volumes:
+  etcd_data:
+
+
+# etcdctl get /skydns/com/example/openshift4/api-int 
+# etcdctl put /skydns/com/example/openshift4/api-int '{"host":"192.168.57.60","ttl":60}'

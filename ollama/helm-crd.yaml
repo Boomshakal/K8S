@@ -1,0 +1,12 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: ollama
+spec:
+  chart: ollama 
+  repo: https://otwld.github.io/ollama-helm/
+  valuesContent: |-
+    persistence:
+      enabled: true
+      storageClass: nfs-client
+      accessMode: ReadWriteMany

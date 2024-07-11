@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  aria2:
+    image: p3terx/aria2-pro:latest
+    environment:
+      - PUID=$UID
+      - PGID=$GID
+      - UMASK_SET=022
+      - RPC_SECRET=12345678
+      - RPC_PORT=6800
+      - LISTEN_PORT=6888
+    volumes:
+      - /Users/lihuimin/aria2/config:/config
+      - /Users/lihuimin/Downloads:/downloads
+    ports:
+      - "16800:6800"
+      - "16888:6888"
+      - "16888:6888/udp"
+    networks:
+      - aria2
+
+  ariang:
+    image: p3terx/ariang:latest
+    ports:
+      - "46880:6880"
+    depends_on:
+      - aria2
+    networks:
+      - aria2
+
+networks:
+  aria2:

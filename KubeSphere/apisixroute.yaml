@@ -1,0 +1,16 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: kubesphere-route
+  namespace: kubesphere-system
+spec:
+  http:
+  - backends:
+    - serviceName: ks-console
+      servicePort: 80
+    match:
+      hosts:
+      - kubesphere.k3s.com
+      paths:
+      - /*
+    name: route-1
