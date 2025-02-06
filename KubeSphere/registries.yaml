@@ -1,0 +1,14 @@
+mirrors:
+  "docker.io":
+    endpoint:
+      - "https://b33dfgq9.mirror.aliyuncs.com"
+
+
+
+cat >> /etc/rancher/k3s/registries.yaml <<EOF
+mirrors:
+  "docker.io":
+    endpoint:
+      - "https://docker.mirrors.ustc.edu.cn"
+      - "https://index.docker.io"
+EOF
