@@ -3,7 +3,7 @@ version: '2.15'
 services:
   ollama:
     container_name: ollama
-    image: ollama/ollama
+    image: ollama/ollama:0.5.8-rc10
     ports:
       - 11434:11434
     volumes:
@@ -11,7 +11,7 @@ services:
 
   web-ui:
     container_name: open-webui
-    image: ghcr.io/ollama-webui/ollama-webui:main
+    image: ghcr.io/open-webui/open-webui:v0.5.10
     ports:
       - 8080:8080
     extra_hosts:
