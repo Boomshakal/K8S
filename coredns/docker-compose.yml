@@ -4,7 +4,7 @@ services:
     image: coredns/coredns:1.11.1
     command: -conf /etc/coredns/Corefile
     volumes:
-      - /Users/lihuimin/coredns/Corefile:/etc/coredns/Corefile
+      - /Users/lihuimin/docker/coredns/Corefile:/etc/coredns/Corefile
     ports:
       - "53:53"
       - "53:53/udp"

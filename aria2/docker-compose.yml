@@ -10,7 +10,7 @@ services:
       - RPC_PORT=6800
       - LISTEN_PORT=6888
     volumes:
-      - /Users/lihuimin/aria2/config:/config
+      - /Users/lihuimin/docker/aria2/config:/config
       - /Users/lihuimin/Downloads:/downloads
     ports:
       - "16800:6800"

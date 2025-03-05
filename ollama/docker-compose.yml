@@ -7,7 +7,7 @@ services:
     ports:
       - 11434:11434
     volumes:
-      - /Users/lihuimin/ai/ollama:/root/.ollama
+      - /Users/lihuimin/docker/ai/ollama:/root/.ollama
 
   web-ui:
     container_name: open-webui
