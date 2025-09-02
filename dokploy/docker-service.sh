@@ -38,7 +38,7 @@ docker service create \
       --mount type=bind,source=/volume1/docker/dokploy/traefik/traefik.yml,target=/etc/traefik/traefik.yml \
       --mount type=bind,source=/volume1/docker/dokploy/dokploy/traefik/dynamic,target=/etc/dokploy/traefik/dynamic \
       --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
-      --publish mode=host,published=10443,target=443 \
-      --publish mode=host,published=10080,target=80 \
-      --publish mode=host,published=10443,target=443,protocol=udp \
-      traefik:v3.1.2
+      --publish mode=host,published=8443,target=8443 \
+      --publish mode=host,published=8880,target=8880 \
+      --publish mode=host,published=8443,target=8443,protocol=udp \
+      traefik:v3.5.0
