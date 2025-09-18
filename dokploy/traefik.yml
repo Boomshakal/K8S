@@ -1,0 +1,42 @@
+global:
+  sendAnonymousUsage: false
+providers:
+  swarm:
+    exposedByDefault: false
+    watch: true
+  docker:
+    exposedByDefault: false
+    watch: true
+    network: dokploy-network
+  file:
+    directory: /etc/dokploy/traefik/dynamic
+    watch: true
+entryPoints:
+  web:
+    address: ':8880'
+  websecure:
+    address: ':8443'
+    http3:
+      advertisedPort: 8443
+    http:
+      tls:
+        certResolver: letsencrypt
+api:
+  insecure: true
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: 362169885@qq.com
+      storage: /etc/dokploy/traefik/dynamic/acme.json
+      httpChallenge:
+        entryPoint: web
+accessLog:
+  filePath: /etc/dokploy/traefik/dynamic/access.log
+  format: json
+  bufferingSize: 100
+  filters:
+    retryAttempts: true
+    minDuration: 10ms
+# tracing: {}
+# metrics:
+#   otlp: {}
