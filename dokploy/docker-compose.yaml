@@ -3,6 +3,7 @@ version: '3.8'
 services:
   dokploy-postgres:
     image: postgres:16
+    container_name: dokploy-postgres
     environment:
       POSTGRES_USER: dokploy
       POSTGRES_DB: dokploy
@@ -18,6 +19,7 @@ services:
 
   dokploy-redis:
     image: redis:7
+    container_name: dokploy-redis
     volumes:
       - redis-data-volume:/data
     networks:
@@ -29,6 +31,7 @@ services:
 
   dokploy:
     image: dokploy/dokploy:latest
+    container_name: dokploy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /volume1/docker/dokploy/dokploy:/etc/dokploy
@@ -38,7 +41,7 @@ services:
     ports:
       - "13000:3000"
     environment:
-      ADVERTISE_ADDR: 192.168.50.252
+      ADVERTISE_ADDR: ${ADVERTISE_ADDR}
     depends_on:
       - dokploy-postgres
       - dokploy-redis
@@ -53,12 +56,15 @@ services:
 
   dokploy-traefik:
     image: traefik:v3.5.0
+    container_name: dokploy-traefik
     volumes:
       - /volume1/docker/dokploy/traefik/traefik.yml:/etc/traefik/traefik.yml
       - /volume1/docker/dokploy/dokploy/traefik/dynamic:/etc/dokploy/traefik/dynamic
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - dokploy-network
+    environment:
+      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
     ports:
       - "8443:8443"
       - "8880:8880"
