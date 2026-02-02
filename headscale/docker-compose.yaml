@@ -1,0 +1,17 @@
+services:
+  headscale:
+    container_name: headscale
+    image: headscale/headscale:latest
+    command: serve
+    restart: unless-stopped
+    volumes:
+      - ${HEADSCALE_PATH}/config:/etc/headscale
+      - ${HEADSCALE_PATH}/lib:/var/lib/headscale
+      - ${HEADSCALE_PATH}/run:/var/run/headscale
+    healthcheck:
+      test: ["CMD", "headscale", "health"]
+
+  headscale-ui:
+    container_name: headscale-ui
+    image: ghcr.io/gurucomputing/headscale-ui:latest
+    restart: unless-stopped
