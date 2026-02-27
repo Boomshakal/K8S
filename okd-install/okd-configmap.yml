@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+data:
+  ASSISTED_SERVICE_HOST: 192.168.50.250:8090
+  ASSISTED_SERVICE_SCHEME: http
+  AUTH_TYPE: none
+  DB_HOST: 192.168.50.250
+  DB_NAME: installer
+  DB_PASS: admin
+  DB_PORT: "5432"
+  DB_USER: admin
+  DEPLOY_TARGET: onprem
+  DISK_ENCRYPTION_SUPPORT: "false"
+  DUMMY_IGNITION: "false"
+  ENABLE_SINGLE_NODE_DNSMASQ: "false"
+  HW_VALIDATOR_REQUIREMENTS: '[{"version":"default","master":{"cpu_cores":4,"ram_mib":16384,"disk_size_gb":100,"installation_disk_speed_threshold_ms":10,"network_latency_threshold_ms":100,"packet_loss_percentage":0},"arbiter":{"cpu_cores":2,"ram_mib":8192,"disk_size_gb":100,"installation_disk_speed_threshold_ms":10,"network_latency_threshold_ms":1000,"packet_loss_percentage":0},"worker":{"cpu_cores":2,"ram_mib":8192,"disk_size_gb":100,"installation_disk_speed_threshold_ms":10,"network_latency_threshold_ms":1000,"packet_loss_percentage":10},"sno":{"cpu_cores":8,"ram_mib":16384,"disk_size_gb":100,"installation_disk_speed_threshold_ms":10},"edge-worker":{"cpu_cores":2,"ram_mib":8192,"disk_size_gb":15,"installation_disk_speed_threshold_ms":10}}]'
+  IMAGE_SERVICE_BASE_URL: http://192.168.50.250:8888
+  IPV6_SUPPORT: "true"
+  ISO_IMAGE_TYPE: "full-iso"
+  LISTEN_PORT: "8888"
+  NTP_DEFAULT_SERVER: ""
+  POSTGRESQL_DATABASE: installer
+  POSTGRESQL_PASSWORD: admin
+  POSTGRESQL_USER: admin
+  PUBLIC_CONTAINER_REGISTRIES: 'quay.io,registry.ci.openshift.org'
+  SERVICE_BASE_URL: http://192.168.50.250:8090
+  STORAGE: filesystem
+  OS_IMAGES: '[{"openshift_version":"4.20","cpu_architecture":"x86_64","url":"https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/43.20260105.3.0/x86_64/fedora-coreos-43.20260105.3.0-live-iso.x86_64.iso","version":"43.20260105.3.0"}]'
+  RELEASE_IMAGES: '[{"openshift_version":"4.20","cpu_architecture":"x86_64","cpu_architectures":["x86_64"],"url":"registry.ci.openshift.org/origin/release:4.16","version":"4.16.0-0.okd","default":true,"support_level":"beta"}]'
+  ENABLE_UPGRADE_AGENT: "false"
+  ENABLE_OKD_SUPPORT: "true"
